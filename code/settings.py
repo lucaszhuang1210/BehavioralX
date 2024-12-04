@@ -1,32 +1,45 @@
-import pygame, sys
-from os.path import join
-from os import walk
-from pytmx.util_pygame import load_pygame
+from pygame.math import Vector2
 
-SCREEN_WIDTH, SCREEN_HEIGHT = 1280,720
-TILE_SIZE = 16
-CHAR_TILE_SIZE = 48
-SCALE_FACTOR = 4
+# screen
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
+TILE_SIZE = 64
+
+# overlay positions 
+OVERLAY_POSITIONS = {
+    'tool': (40, SCREEN_HEIGHT - 15),
+    'seed': (70, SCREEN_HEIGHT - 5)}
+
+PLAYER_TOOL_OFFSET = {
+    'left': Vector2(-50, 40),
+    'right': Vector2(50, 40),
+    'up': Vector2(0, -10),
+    'down': Vector2(0, 50)
+}
 
 LAYERS = {
     'water': 0,
-    'lower ground': 1,
-    'upper ground': 2,
-    'soil': 3,
-    'soil water': 4,
-    'rain floor': 5,
-    'plant': 6,
+    'ground': 1,
+    'soil': 2,
+    'soil water': 3,
+    'rain floor': 4,
+    'house bottom': 5,
+    'ground plant': 6,
     'main': 7,
-    'fruit': 8,
-	'rain drops': 9,
-    'particles': 10
+    'house top': 8,
+    'fruit': 9,
+    'rain drops': 10
 }
 
-GROW_SPEED = {'corn': 1, 'tomato': 0.7}
+APPLE_POS = {
+    'Small': [(18, 17), (30, 37), (12, 50), (30, 45), (20, 30), (30, 10)],
+    'Large': [(30, 24), (60, 65), (50, 50), (16, 40), (45, 50), (42, 70)]
+}
 
-OVERLAY_POSITIONS = {
-    'tool' : (40, SCREEN_HEIGHT - 15),
-    'seed': (70, SCREEN_HEIGHT - 5)}
+GROW_SPEED = {
+    'corn': 1,
+    'tomato': 0.7
+}
 
 SALE_PRICES = {
     'wood': 4,
@@ -35,11 +48,6 @@ SALE_PRICES = {
     'tomato': 20
 }
 PURCHASE_PRICES = {
-    'corn seed': 4,
-    'tomato seed': 5
-}
-
-APPLE_POS = {
-	'small': [(18,17), (30,37), (12,50), (30,45), (20,30), (30,10)],
-	'default': [(30,24), (60,65), (50,50), (16,40),(45,50), (42,70)]
+    'corn': 4,
+    'tomato': 5
 }
